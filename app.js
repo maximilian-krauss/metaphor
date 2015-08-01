@@ -10,16 +10,16 @@ var controllers = all('./controllers/'),
 
 app.use(compression({ threshold: 512 }));
 
-// Catch all requests which were not handled by the controller family ... these suckers...
-app.all('*', function(req, res) {
-  res.status(404).send({ error: 'Page not found' });
-});
-
 _.each(controllers, function(controller) {
   controller.apply({
     app: app,
     core: core
   });
+});
+
+// Catch all requests which were not handled by the controller family ... these suckers...
+app.all('*', function(req, res) {
+  res.status(404).send({ error: 'Page not found' });
 });
 
 function fireAndForget() {
