@@ -1,0 +1,28 @@
+{
+  "name": "metaphor",
+  "version": "0.0.1",
+  "description": "We will see",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maximilian-krauss/metaphor.git"
+  },
+  "author": "Maximilian Krauß <max@krauss.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maximilian-krauss/metaphor/issues"
+  },
+  "homepage": "https://github.com/maximilian-krauss/metaphor",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "compression": "^1.5.1",
+    "express": "^4.13.1",
+    "lodash": "^3.10.0",
+    "memory-cache": "^0.1.4",
+    "require-directory": "^2.1.1",
+    "require-tree": "^1.0.1"
+  }
+}
