@@ -30,7 +30,6 @@ module.exports = function(item) {
   var deferred = Q.defer();
 
   if(!/^https?:\/\/(www.|)soundcloud.com\/([^\?&\"\'>]+)$/.test(item.url)) {
-    console.log('thats not an soundcloud url');
     deferred.reject(item);
     return deferred.promise;
   }

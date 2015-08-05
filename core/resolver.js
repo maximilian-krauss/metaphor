@@ -4,11 +4,12 @@ var _ = require('lodash'),
     fulfilled = 'fulfilled',
     resolvers = all('./resolvers');
 
-function _resolve(url) {
+function _resolve(url, index) {
   var deferred = Q.defer(),
       resolverJobs = [];
 
   var item = {
+    index: index,
     url: url,
     type: 'unknown',
     meta: undefined
@@ -29,8 +30,8 @@ function _resolve(url) {
 module.exports = function(itemsToResolve, callback) {
   var jobs = [];
 
-  _.each(itemsToResolve, function(item) {
-    jobs.push(_resolve(item));
+  _.each(itemsToResolve, function(item, index) {
+    jobs.push(_resolve(item, index));
   });
 
   Q.allSettled(jobs)
@@ -42,6 +43,7 @@ module.exports = function(itemsToResolve, callback) {
             ? promise.value
             : promise.reason;
         })
+        .sortBy(function(item) { return item.index; })
         .value();
 
       callback(null, resolvedItems);
