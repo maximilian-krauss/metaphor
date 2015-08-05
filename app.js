@@ -2,20 +2,38 @@ var _ = require('lodash'),
     all = require('require-tree')
     express = require('express'),
     compression = require('compression'),
+    bodyParser = require('body-parser'),
     colors = require('colors'),
+    dotenv = require('dotenv').load(),
     app = express();
 
 var controllers = all('./controllers/'),
+    middlewares = all('./middlewares'),
+    interceptors = all('./interceptors'),
     core = require('./core');
 
-app.use(compression({ threshold: 512 }));
-
-_.each(controllers, function(controller) {
-  controller.apply({
-    app: app,
-    core: core
+function injectDependenciesInto(targets) {
+  _.each(targets, function(target) {
+    target.apply({
+      app: app,
+      core: core,
+      middlewares: middlewares
+    })
   });
-});
+}
+
+injectDependenciesInto(interceptors);
+
+app.use(compression({ threshold: 512 }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.set('x-powered-by', false);
+app.set('etag', 'strong');
+
+injectDependenciesInto(middlewares);
+injectDependenciesInto(controllers);
 
 // Catch all requests which were not handled by the controller family ... these suckers...
 app.all('*', function(req, res) {

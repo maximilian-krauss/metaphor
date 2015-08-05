@@ -17,11 +17,15 @@
   },
   "homepage": "https://github.com/maximilian-krauss/metaphor",
   "dependencies": {
+    "body-parser": "^1.13.3",
     "colors": "^1.1.2",
     "compression": "^1.5.1",
+    "dotenv": "^1.2.0",
     "express": "^4.13.1",
     "lodash": "^3.10.0",
     "memory-cache": "^0.1.4",
+    "q": "^1.4.1",
+    "request": "^2.60.0",
     "require-directory": "^2.1.1",
     "require-tree": "^1.0.1"
   }
