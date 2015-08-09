@@ -11,7 +11,8 @@ function _normalizeMeta(meta) {
     createdAt: meta.created_at,
     previewImage: meta.artwork_url,
     plays: meta.playback_count,
-    likes: meta.favoritings_count
+    likes: meta.favoritings_count,
+    duration: meta.duration
   }
 }
 
