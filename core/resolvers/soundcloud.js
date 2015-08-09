@@ -3,6 +3,18 @@ var _ = require('lodash'),
     request = require('request'),
     soundcloudResolveUri = 'https://api.soundcloud.com/resolve.json';
 
+function _normalizeMeta(meta) {
+  return {
+    id: meta.id,
+    title: meta.title,
+    description: meta.description,
+    createdAt: meta.created_at,
+    previewImage: meta.artwork_url,
+    plays: meta.playback_count,
+    likes: meta.favoritings_count
+  }
+}
+
 function _fetchSoundcloudMeta(url, callback) {
   var soundcloudId = process.env.META_RESOLVER_SOUNDCLOUD_CLIENT_ID;
   if(!soundcloudId) {
@@ -41,10 +53,10 @@ module.exports = function(item) {
       return deferred.promise;
     }
 
-    item.type = 'soundcloud';
-    item.meta = meta;
-
-    deferred.resolve(item);
+    deferred.resolve(_.extend(item, {
+      type: 'soundcloud',
+      meta:  _normalizeMeta(meta)
+    }));
   });
 
   return deferred.promise;

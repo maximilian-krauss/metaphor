@@ -4,6 +4,31 @@ var _ = require('lodash'),
     pattern = /^https?:\/\/(www.|)(youtu.be\/|youtube.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&\"\'>]+)$/,
     endpoint = 'https://www.googleapis.com/youtube/v3/videos';
 
+function _getBestThumbnail(thumbnails) {
+  if(!thumbnails) {
+    return undefined;
+  }
+
+  return _(thumbnails)
+    .chain()
+    .sortBy(function(t) { return t.width; })
+    .map(function(t) { return t.url; })
+    .last()
+    .value();
+}
+
+function _normalizeMeta(videoId, meta) {
+  return {
+    id: videoId,
+    title: meta.snippet.title,
+    description: meta.snippet.description,
+    createdAt: meta.snippet.publishedAt,
+    previewImage: _getBestThumbnail(meta.snippet.thumbnails),
+    plays: meta.statistics.viewCount,
+    likes: meta.statistics.likeCount
+  };
+}
+
 function _fetchYoutubeMeta(id, callback) {
   var apiKey = process.env.META_RESOLVER_YOUTUBE_API_KEY;
   if(!apiKey) {
@@ -51,10 +76,10 @@ module.exports = function(item) {
       return deferred.promise;
     }
 
-    item.meta = meta;
-    item.type = 'youtube';
-
-    deferred.resolve(item);
+    deferred.resolve(_.extend(item, {
+      type: 'youtube',
+      meta:  _normalizeMeta(videoId, meta)
+    }));
   });
 
   return deferred.promise;
