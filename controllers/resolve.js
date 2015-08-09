@@ -3,7 +3,7 @@ module.exports = function() {
       core = this.core,
       middlewares = this.middlewares;
 
-  app.post('/resolve', function(req, res) {
+  app.post('/resolve', middlewares['require-api-key'](), function(req, res) {
 
     core.resolver(req.body, function(err, resolvedItems) {
       if(err) {
