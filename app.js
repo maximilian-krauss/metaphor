@@ -4,7 +4,7 @@ var _ = require('lodash'),
     compression = require('compression'),
     bodyParser = require('body-parser'),
     colors = require('colors'),
-    dotenv = require('dotenv').load(),
+    dotenv = require('dotenv').config({silent: true}),
     app = express();
 
 var controllers = all('./controllers/'),

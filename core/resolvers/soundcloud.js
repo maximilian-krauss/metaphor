@@ -1,5 +1,5 @@
 var _ = require('lodash'),
-    Q = require('Q'),
+    Q = require('q'),
     request = require('request'),
     soundcloudResolveUri = 'https://api.soundcloud.com/resolve.json';
 
