@@ -73,7 +73,7 @@ module.exports = function(item) {
   var videoId = _(pattern.exec(item.url)).last();
   _fetchYoutubeMeta(videoId, function(err, meta) {
     if(err) {
-      console.log('[YOUTUBE] Error:', err.message);
+      console.log('[YOUTUBE] Error:'.red, err.message);
       deferred.reject(item);
       return deferred.promise;
     }

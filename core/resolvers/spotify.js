@@ -120,7 +120,8 @@ module.exports = function(item) {
 
     _fetchSpotifyMeta(req, token, function(err, meta) {
       if(err) {
-        return _andReject(item);
+        console.log('[SPOTIFY] ERROR:'.red, err);
+        return _andReject(deferred, item);
       }
 
       deferred.resolve(_.extend(item, {

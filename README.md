@@ -7,6 +7,9 @@ Supported platforms:
 * Soundcloud
 * Spotify (playlists)
 
+## Demo
+You can try metaphor here: https://metaphor-dev.herokuapp.com/ or see it in action here: https://krauss.io/music
+
 ## Configuration
 Environment variable | Required | Default | Description
 --- | --- | --- | ---
@@ -15,7 +18,10 @@ META_RESOLVER_YOUTUBE_API_KEY | yes | empty | Your Youtube v3 API Key
 META_RESOLVER_SPOTIFY_CLIENT_ID | yes | empty | Your Spotify client ID
 META_RESOLVER_SPOTIFY_CLIENT_SECRET | yes | empty | Your Spotify client secret
 META_REQUIRE_API_KEY | no | false | Set to true if the resolve route should be accessible via an API Key
-META_API_KEY | yes, if `META_REQUIRE_API_KEY` is set to true | empty | Your API access key 
+META_API_KEY | yes, if `META_REQUIRE_API_KEY` is set to true | empty | Your API access key
+
+### Development
+While hacking on metaphor you can place a .env file inside the apps root directory with all required variables.
 
 ## Routes
 
