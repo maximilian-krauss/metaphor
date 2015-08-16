@@ -28,6 +28,7 @@ This one expects an HTTP POST request with an JSON body which contains the list 
 [
     "https://www.youtube.com/watch?v=UWb5Qc-fBvk",
     "https://soundcloud.com/dgtl-festival/nto-dgtl-festival-2014",
+    "https://open.spotify.com/user/paulkalkbrenner_official/playlist/2TyABcP0JuCllhQlMekLBP",
     "https://i_am_an_unsupported_url.com/123432"
 ]
 ```
@@ -42,11 +43,11 @@ This one expects an HTTP POST request with an JSON body which contains the list 
         "meta": {
             "id": "UWb5Qc-fBvk",
             "title": "Tomorrowland 2012 | official aftermovie",
-            "description": "Tomorrowland 2012 | official aftermovie\\\nMore Madness... <shortened>",
+            "description": "Tomorrowland 2012 | official aftermovie\nMore Madness... http://bit.ly/IMrCUy <shortened>",
             "createdAt": "2012-09-10T12:59:18.000Z",
             "previewImage": "https://i.ytimg.com/vi/UWb5Qc-fBvk/maxresdefault.jpg",
-            "plays": "128460975",
-            "likes": "611971",
+            "plays": "128536612",
+            "likes": "612200",
             "duration": 1201000
         }
     },
@@ -57,16 +58,31 @@ This one expects an HTTP POST request with an JSON body which contains the list 
         "meta": {
             "id": 147200744,
             "title": "N'To @ DGTL Festival 2014",
-            "description": "Coming up:\\\n14/8 - 15/8:  DGTL festival BARCELONA - on.fb.me/1CR28NE\\\n\\\nAdam Beyer - Agoria - Âme [DJ] - Ben Klock - Boddika - Breach - David August [Live] - Dixon - De Sluwe Vos - DJ Fra - George Fitzgerald - Henrik Schwarz - Job Jobse - John Talabot - Joseph Capriati - Maceo Plex - Marcel Dettmann - Miguel Puente - Paco Osuna - Paul Ritch - Pearson Sound - Ryan Elliot - Shall Ocin - Tom Trago - Undo - Worakls [Live]\\\n\\\nAlfonso - Awwz - Baldo presents BLD - Begun - DB - Diego Gamez - Ginebra - Jade - Kosmos - Pau Roca\\\n\\\nhttp://www.dgtl.es",
+            "description": "Coming up:\n14/8 - 15/8:  DGTL festival BARCELONA - on.fb.me/1CR28NE <shortened>",
             "createdAt": "2014/04/30 10:32:43 +0000",
             "previewImage": "https://i1.sndcdn.com/artworks-000078018415-24mo55-large.jpg",
-            "plays": 32468,
-            "likes": 1353,
+            "plays": 32593,
+            "likes": 1358,
             "duration": 3792446
         }
     },
     {
         "index": 2,
+        "url": "https://open.spotify.com/user/paulkalkbrenner_official/playlist/2TyABcP0JuCllhQlMekLBP",
+        "type": "spotify",
+        "meta": {
+            "id": "2TyABcP0JuCllhQlMekLBP",
+            "title": "7 and the Best Of Paul Kalkbrenner",
+            "description": "This playlist combines new tracks from my upcoming album &quot;7&quot; with a little &quot;Best of&quot; from my greatest Tracks and Productions! <shortened>",
+            "createdAt": null,
+            "previewImage": "https://u.scdn.co/images/pl/default/55aa835650f3f64a5b0fe87d877383e61dc7a8f2",
+            "plays": null,
+            "likes": 11858,
+            "duration": 10169467
+        }
+    },
+    {
+        "index": 3,
         "url": "https://i_am_an_unsupported_url.com/123432",
         "type": "unknown"
     }
