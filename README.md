@@ -6,6 +6,7 @@ Supported platforms:
 * Youtube
 * Soundcloud
 * Spotify (playlists)
+* vimeo
 
 ## Demo
 You can try metaphor here: https://metaphor-dev.herokuapp.com/ or see it in action here: https://krauss.io/music
