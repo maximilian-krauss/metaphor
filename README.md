@@ -18,6 +18,7 @@ META_RESOLVER_SOUNDCLOUD_CLIENT_ID | yes | empty | Your Soundcloud Client Id.
 META_RESOLVER_YOUTUBE_API_KEY | yes | empty | Your Youtube v3 API Key
 META_RESOLVER_SPOTIFY_CLIENT_ID | yes | empty | Your Spotify client ID
 META_RESOLVER_SPOTIFY_CLIENT_SECRET | yes | empty | Your Spotify client secret
+META_RESOLVER_VIMEO_ACCESS_TOKEN | yes | empty | Your vimeo access token
 META_REQUIRE_API_KEY | no | false | Set to true if the resolve route should be accessible via an API Key
 META_API_KEY | yes, if `META_REQUIRE_API_KEY` is set to true | empty | Your API access key
 
