@@ -71,6 +71,7 @@ module.exports = function(item) {
 
     deferred.resolve(_.extend(item, {
       type: 'vimeo',
+      resolved: true,
       meta: _normalizeMeta(videoId, meta)
     }));
   });
