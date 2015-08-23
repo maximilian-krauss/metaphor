@@ -12,6 +12,7 @@ function _resolve(url, index) {
     index: index,
     url: url,
     type: 'unknown',
+    resolved: false,
     meta: undefined
   };
 

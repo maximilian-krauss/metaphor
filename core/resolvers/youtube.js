@@ -80,6 +80,7 @@ module.exports = function(item) {
 
     deferred.resolve(_.extend(item, {
       type: 'youtube',
+      resolved: true,
       meta:  _normalizeMeta(videoId, meta)
     }));
   });
