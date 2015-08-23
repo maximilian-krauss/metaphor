@@ -5,6 +5,7 @@ var _ = require('lodash'),
     bodyParser = require('body-parser'),
     colors = require('colors'),
     dotenv = require('dotenv').config({silent: true}),
+    morgan = require('morgan'),
     app = express();
 
 var controllers = all('./controllers/'),
@@ -24,6 +25,7 @@ function injectDependenciesInto(targets) {
 
 injectDependenciesInto(interceptors);
 
+app.use(morgan('tiny'));
 app.use(compression({ threshold: 512 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
