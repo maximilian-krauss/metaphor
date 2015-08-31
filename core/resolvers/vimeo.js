@@ -50,7 +50,8 @@ function _normalizeMeta(id, meta) {
     createdAt: meta.created_time,
     previewImage: _getBestPicture(meta.pictures),
     plays: meta.stats.plays,
-    likes: meta.metadata.connections.likes.total
+    likes: meta.metadata.connections.likes.total,
+    duration: meta.duration * 1000
   };
 }
 
