@@ -16,7 +16,10 @@
     "url": "https://github.com/maximilian-krauss/metaphor/issues"
   },
   "homepage": "https://github.com/maximilian-krauss/metaphor",
-  "engines" : { "node" : ">=4.1", "npm" : ">= 3.1" },
+  "engines": {
+    "node": ">=4.1",
+    "npm": ">= 3.1"
+  },
   "dependencies": {
     "body-parser": "^1.13.3",
     "colors": "^1.1.2",
@@ -25,6 +28,7 @@
     "express": "^4.13.3",
     "git-rev": "^0.2.1",
     "lodash": "^3.10.1",
+    "meerkat-client": "0.0.1",
     "memory-cache": "^0.1.4",
     "moment": "^2.10.6",
     "morgan": "^1.6.1",
