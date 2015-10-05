@@ -3,9 +3,9 @@
 class Config {
   constructor() {
     this._production = process.env.NODE_ENV === 'production';
-    this._meerkat = {
-      endpoint: process.env.MEERKAT_ENDPOINT,
-      token: process.env.MEERKAT_TOKEN
+    this._kugelblitz = {
+      endpoint: process.env.KUGELBLITZ_ENDPOINT,
+      token: process.env.KUGELBLITZ_TOKEN
     };
   }
 
@@ -13,8 +13,8 @@ class Config {
     return this._production;
   }
 
-  get meerkat() {
-    return this._meerkat;
+  get kugelblitz() {
+    return this._kugelblitz;
   }
 
 }

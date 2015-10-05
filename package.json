@@ -28,7 +28,7 @@
     "express": "^4.13.3",
     "git-rev": "^0.2.1",
     "lodash": "^3.10.1",
-    "meerkat-client": "0.0.3",
+    "kugelblitz-client": "0.0.4",
     "memory-cache": "^0.1.4",
     "moment": "^2.10.6",
     "morgan": "^1.6.1",

@@ -8,16 +8,16 @@ const _ = require('lodash'),
     colors = require('colors'),
     dotenv = require('dotenv').config({silent: true}),
     morgan = require('morgan'),
-    mk = require('meerkat-client'),
+    kgb = require('kugelblitz-client'),
     config = require('./config.js'),
     app = express();
 
 var controllers = all('./controllers/'),
     middlewares = all('./middlewares'),
     interceptors = all('./interceptors'),
-    meerkat = new mk({
-      endpoint: config.meerkat.endpoint,
-      token: config.meerkat.token
+    kugelblitz = new kgb({
+      endpoint: config.kugelblitz.endpoint,
+      token: config.kugelblitz.token
     }),
     core = require('./core');
 
