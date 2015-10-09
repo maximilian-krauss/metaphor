@@ -1,6 +1,9 @@
+'use strict'
+
 var _ = require('lodash'),
     Q = require('q'),
     request = require('request'),
+    pattern = /^https?:\/\/(www.|)soundcloud.com\/([^\?&\"\'>]+)$/,
     soundcloudResolveUri = 'https://api.soundcloud.com/resolve.json';
 
 function _normalizeMeta(meta) {
@@ -32,17 +35,26 @@ function _fetchSoundcloudMeta(url, callback) {
 
   request.get(soundcloudResolveUri, options, function(err, res, body) {
     if(err || body.errors) {
-      return callback(err || body.errors[0].error_message);
+      return callback(err || new Error(body.errors[0].error_message));
     }
 
     callback(null, body);
   });
 }
 
-module.exports = function(item) {
+function _reportAndReject(kugelblitz, err, item, deferred) {
+  kugelblitz.reportError(err)
+    .then(() => {
+      deferred.reject(item);
+    });
+
+  return deferred.promise;
+}
+
+module.exports = function(kugelblitz, item) {
   var deferred = Q.defer();
 
-  if(!/^https?:\/\/(www.|)soundcloud.com\/([^\?&\"\'>]+)$/.test(item.url)) {
+  if(!pattern.test(item.url)) {
     deferred.reject(item);
     return deferred.promise;
   }
@@ -50,8 +62,7 @@ module.exports = function(item) {
   _fetchSoundcloudMeta(item.url, function(err, meta) {
     if(err) {
       console.log('[SOUNDCLOUD] ERROR:'.red, err.message);
-      deferred.reject(item);
-      return deferred.promise;
+      return _reportAndReject(kugelblitz, err, item, deferred);
     }
 
     deferred.resolve(_.extend(item, {

@@ -44,7 +44,7 @@ function _getAccessToken(cb) {
 
   request.post(options, function(err, res, body) {
     if(err || res.statusCode != 200) {
-      return cb(err || body);
+      return cb(err || new Error(JSON.stringify(body)));
     }
 
     cache.put('spotify-token', body.access_token, body.expires_in * 1000);
@@ -66,7 +66,7 @@ function _fetchSpotifyMeta(req, token, cb) {
 
   request(options, function(err, res, body) {
     if(err || res.statusCode != 200) {
-      return cb(err || body);
+      return cb(err || new Error(JSON.stringify(body)));
     }
     cb(null, body);
   });
@@ -74,6 +74,15 @@ function _fetchSpotifyMeta(req, token, cb) {
 
 function _andReject(deferred, err) {
   deferred.reject(err);
+  return deferred.promise;
+}
+
+function _reportAndReject(kugelblitz, err, item, deferred) {
+  kugelblitz.reportError(err)
+    .then(() => {
+      deferred.reject(item);
+    });
+
   return deferred.promise;
 }
 
@@ -103,7 +112,7 @@ function _normalizeMeta(meta) {
   }
 }
 
-module.exports = function(item) {
+module.exports = function(kugelblitz, item) {
   var deferred = Q.defer(),
       req;
 
@@ -115,13 +124,13 @@ module.exports = function(item) {
 
   _getAccessToken(function(tokenErr, token) {
     if(tokenErr) {
-      return _andReject(deferred, item);
+      return _reportAndReject(kugelblitz, tokenErr, item, deferred);
     }
 
     _fetchSpotifyMeta(req, token, function(err, meta) {
       if(err) {
         console.log('[SPOTIFY] ERROR:'.red, err);
-        return _andReject(deferred, item);
+        return _reportAndReject(kugelblitz, err, item, deferred);
       }
 
       deferred.resolve(_.extend(item, {

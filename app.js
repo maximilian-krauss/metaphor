@@ -27,8 +27,9 @@ function injectDependenciesInto(targets) {
       app: app,
       core: core,
       middlewares: middlewares,
-      config: config
-    })
+      config: config,
+      kugelblitz: kugelblitz
+    });
   });
 }
 

@@ -4,7 +4,7 @@ var _ = require('lodash'),
     fulfilled = 'fulfilled',
     resolvers = all('./resolvers');
 
-function _resolve(url, index) {
+function _resolve(kugelblitz, url, index) {
   var deferred = Q.defer(),
       resolverJobs = [];
 
@@ -17,7 +17,7 @@ function _resolve(url, index) {
   };
 
   _.each(resolvers, function(r) {
-    resolverJobs.push(r(item));
+    resolverJobs.push(r(kugelblitz, item));
   });
 
   Q.any(resolverJobs)
@@ -28,11 +28,11 @@ function _resolve(url, index) {
   return deferred.promise;
 }
 
-module.exports = function(itemsToResolve, callback) {
+module.exports = function(kugelblitz, itemsToResolve, callback) {
   var jobs = [];
 
   _.each(itemsToResolve, function(item, index) {
-    jobs.push(_resolve(item, index));
+    jobs.push(_resolve(kugelblitz, item, index));
   });
 
   Q.allSettled(jobs)

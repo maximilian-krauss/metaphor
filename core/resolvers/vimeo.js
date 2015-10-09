@@ -10,6 +10,15 @@ function _andReject(deferred, item) {
   return deferred.promise;
 }
 
+function _reportAndReject(kugelblitz, err, item, deferred) {
+  kugelblitz.reportError(err)
+    .then(() => {
+      deferred.reject(item);
+    });
+
+  return deferred.promise;
+}
+
 function _fetchVimeoMeta(id, cb) {
   var options = {
     url: endpoint + id,
@@ -22,7 +31,7 @@ function _fetchVimeoMeta(id, cb) {
 
   request(options, function(err, res, body) {
     if(err || res.statusCode != 200) {
-      return cb(err || body);
+      return cb(err || new Error(JSON.stringify(body)));
     }
 
     cb(null, body);
@@ -55,7 +64,7 @@ function _normalizeMeta(id, meta) {
   };
 }
 
-module.exports = function(item) {
+module.exports = function(kugelblitz, item) {
   var deferred = Q.defer();
   if(!pattern.test(item.url)) {
     return _andReject(deferred, item);
@@ -67,7 +76,7 @@ module.exports = function(item) {
   _fetchVimeoMeta(videoId, function(err, meta) {
     if(err) {
       console.log('[VIMEO] Error:'.red, err);
-      return _andReject(deferred, item);
+      return _reportAndReject(kugelblitz, err, item, deferred);
     }
 
     deferred.resolve(_.extend(item, {

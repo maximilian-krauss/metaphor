@@ -62,7 +62,16 @@ function _fetchYoutubeMeta(id, callback) {
   });
 }
 
-module.exports = function(item) {
+function _reportAndReject(kugelblitz, err, item, deferred) {
+  kugelblitz.reportError(err)
+    .then(() => {
+      deferred.reject(item);
+    });
+
+  return deferred.promise;
+}
+
+module.exports = function(kugelblitz, item) {
   var deferred = Q.defer();
 
   if(!pattern.test(item.url)) {
@@ -74,8 +83,7 @@ module.exports = function(item) {
   _fetchYoutubeMeta(videoId, function(err, meta) {
     if(err) {
       console.log('[YOUTUBE] Error:'.red, err.message);
-      deferred.reject(item);
-      return deferred.promise;
+      return _reportAndReject(kugelblitz, err, item, deferred);
     }
 
     deferred.resolve(_.extend(item, {
