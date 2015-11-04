@@ -17,7 +17,8 @@ var controllers = all('./controllers/'),
     interceptors = all('./interceptors'),
     kugelblitz = new kgb({
       endpoint: config.kugelblitz.endpoint,
-      token: config.kugelblitz.token
+      token: config.kugelblitz.token,
+      callbackUrl: config.kugelblitz.callbackUrl
     }),
     core = require('./core');
 

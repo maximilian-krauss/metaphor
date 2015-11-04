@@ -28,13 +28,13 @@
     "express": "^4.13.3",
     "git-rev": "^0.2.1",
     "lodash": "^3.10.1",
-    "kugelblitz-client": "0.0.5",
+    "kugelblitz-client": "0.0.6",
     "memory-cache": "^0.1.4",
     "moment": "^2.10.6",
     "morgan": "^1.6.1",
     "q": "^1.4.1",
-    "request": "^2.64.0",
+    "request": "^2.65.0",
     "require-directory": "^2.1.1",
-    "require-tree": "^1.0.1"
+    "require-tree": "^1.1.1"
   }
 }
